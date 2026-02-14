@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agrey Kikoti · dev portfolio</title>
+  <!-- Font & basic styling -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&display=swap" rel="stylesheet">
+  <style>
+    /* minimal reset — keep it clean */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fafaf8;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1c1c1e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* subtle grid background (optional, adds texture) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(#e3e3e0 1px, transparent 1px),
+        linear-gradient(90deg, #e3e3e0 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 2.4rem 2rem;
+    }
+
+    /* headers */
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid #1c1c1e;
+      display: inline-block;
+      padding-bottom: 0.2rem;
+    }
+
+    /* navigation — simple, just for demo (smooth anchors) */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .logo a {
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #1c1c1e;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1c1c1e;
+      font-weight: 500;
+      font-size: 1.1rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #1c1c1e;
+    }
+
+    /* HERO section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      margin: 3rem 0 5rem 0;
+    }
+
+    .hero-content h1 {
+      font-size: 3.3rem;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-highlight {
+      background: #1c1c1e;
+      color: #fafaf8;
+      display: inline-block;
+      padding: 0.1rem 0.8rem;
+      border-radius: 2rem;
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: #3a3a3c;
+      max-width: 550px;
+      margin-bottom: 2rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: transparent;
+      border: 2px solid #1c1c1e;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #1c1c1e;
+      border-radius: 2rem;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: #1c1c1e;
+      color: #fafaf8;
+      border-color: #1c1c1e;
+    }
+
+    .btn-primary:hover {
+      background: #3a3a3c;
+      border-color: #3a3a3c;
+    }
+
+    .btn-outline:hover {
+      background: #eaeae7;
+    }
+
+    /* abstract "avatar" or decorative block — minimal */
+    .hero-graphic {
+      width: 200px;
+      height: 200px;
+      background: #fff;
+      border-radius: 50%;
+      border: 3px solid #1c1c1e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 12px 12px 0 #1c1c1e;
+      transition: 0.2s;
+    }
+
+    .hero-graphic span {
+      font-size: 5rem;
+      font-weight: 300;
+    }
+
+    /* cards for applications & web */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0 4rem 0;
+    }
+
+    .card {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      border: 2px solid #1c1c1e;
+      padding: 2rem 1.5rem;
+      border-radius: 1.5rem;
+      transition: all 0.2s;
+      box-shadow: 6px 6px 0 #1c1c1e;
+    }
+
+    .card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 12px 12px 0 #1c1c1e;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      color: #2c2c2e;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .tag-list li {
+      background: #1c1c1e;
+      color: #fafaf8;
+      font-size: 0.8rem;
+      padding: 0.25rem 1rem;
+      border-radius: 1rem;
+      font-weight: 400;
+    }
+
+    /* about / compact bio */
+    .about-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      background: #f0efeb;
+      border: 2px solid #1c1c1e;
+      border-radius: 2rem;
+      padding: 2.5rem;
+      margin: 4rem 0;
+      box-shadow: 8px 8px 0 #1c1c1e;
+    }
+
+    .about-text {
+      flex: 2;
+      min-width: 280px;
+    }
+
+    .about-text h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p {
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+      color: #2c2c2e;
+    }
+
+    .about-highlight {
+      flex: 1;
+      min-width: 200px;
+      background: #fff;
+      border: 2px solid #1c1c1e;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      align-self: center;
+    }
+
+    .about-highlight ul {
+      list-style: none;
+    }
+
+    .about-highlight li {
+      margin-bottom: 1rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .about-highlight li::before {
+      content: '→';
+      font-weight: 600;
+    }
+
+    /* footer / contact bar */
+    .footer {
+      border-top: 2px solid #1c1c1e;
+      margin-top: 4rem;
+      padding: 2rem 0 0.5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .contact-links a {
+      text-decoration: none;
+      color: #1c1c1e;
+      font-weight: 500;
+      border-bottom: 2px dotted #1c1c1e;
+    }
+
+    .contact-links a:hover {
+      border-bottom-style: solid;
+    }
+
+    .copyright {
+      color: #5e5e60;
+      font-size: 0.95rem;
+    }
+
+    /* very simple responsiveness */
+    @media (max-width: 700px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-graphic {
+        margin: 0 auto;
+      }
+      .btn-group {
+        justify-content: center;
+      }
+      .nav-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .about-wrap {
+        flex-direction: column;
+      }
+      .container {
+        padding: 1.5rem;
+      }
+    }
+
+    /* additional small touches */
+    .badge-mini {
+      background: #1c1c1e;
+      color: #fafaf8;
+      padding: 0.15rem 0.7rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- navigation -->
+    <nav class="nav-bar">
+      <div class="logo"><a href="#">A.R.</a></div>
+      <div class="nav-links">
+        <a href="#work">work</a>
+        <a href="#about">about</a>
+        <a href="#contact">contact</a>
+      </div>
+    </nav>
+
+    <!-- HERO section - represents me -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-highlight">web & application developer</div>
+        <h1>Agrey Kikoti<br>builds for browser & beyond</h1>
+        <p>I craft interfaces, apps, and digital tools with a focus on simplicity, performance, and human interaction.</p>
+        <div class="btn-group">
+          <a href="#work" class="btn btn-primary">see work ↓</a>
+          <a href="#contact" class="btn btn-outline">contact me</a>
+        </div>
+      </div>
+      <div class="hero-graphic">
+        <span>✦</span> <!-- minimalist abstract icon -->
+      </div>
+    </section>
+
+    <!-- WORK section : two core areas (web & application) -->
+    <section id="work">
+      <h2 class="section-title">what I do</h2>
+      <div class="showcase-grid">
+        <!-- web development card -->
+        <div class="card">
+          <div class="card-icon">🌐</div>
+          <h3>web dev</h3>
+          <p>Responsive, accessible, and modern websites. From landing pages to complex web apps.</p>
+          <ul class="tag-list">
+            <li>HTML/CSS</li>
+            <li>JavaScript</li>
+            <li>Php</li>
+           
+          </ul>
+        </div>
+        <!-- application development card -->
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>application dev</h3>
+          <p>Native Android apps built with Android Studio. Clean UI, robust features, and Play Store ready.</p>
+          <ul class="tag-list">
+            <li>Android Studio</li>
+            <li>Java</li>
+          </ul>
+        </div>
+        <!-- plus a bonus "tooling" card to show breadth (optional but keeps it balanced) -->
+        <div class="card">
+          <div class="card-icon">⚙️</div>
+          <h3>backend & APIs</h3>
+          <p>Scalable serverless functions, REST, GraphQL — making sure the app logic is solid.</p>
+          <ul class="tag-list">
+            <li>Firebase</li>
+            <li>PostgreSQL</li>
+            <li>Python</li>
+            <li>Auth</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- about + brief story / human side -->
+    <section id="about">
+      <div class="about-wrap">
+        <div class="about-text">
+          <h2>developer with a passion for clean design</h2>
+<p>I’m Agrey Kikoti — an ICT graduate and aspiring website & application developer, currently building my professional journey and growing my skills through real projects.</p>
+<p>I focus on creating <strong>simple, functional, and user-friendly websites and applications</strong>, with attention to clean code, responsive design, and practical solutions for real needs.</p>
+<p>I believe good software should be easy to use, reliable, and visually clear.</p>
+<p>⚡ Outside of coding: learning new technologies, exploring design ideas, and improving my craft every day.</p>
+
+        </div>
+        <div class="about-highlight">
+          <ul>
+            <li>frontend & backend</li>
+            <li>web · Android</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact / footer area (also functions as #contact) -->
+    <footer id="contact">
+      <div class="footer">
+        <div class="contact-links">
+  <a href="mailto:agreyict@gmail.com">agrey@gmail.com</a>
+  <a href="https://wa.me/2557549733886">WhatsApp</a>
+  <a href="https://github.com/agreykikoti">GitHub</a>
+  <a href="https://www.linkedin.com/in/agrey kikoti">LinkedIn</a>
+</div>
+        <div class="copyright">
+          © 2025 alex rivera – simplified portfolio
+        </div>
+      </div>
+      <!-- small extra anchor note: design represents me -->
+      <p style="margin-top: 2rem; font-size: 0.9rem; color: #5e5e60; border-left: 3px solid #1c1c1e; padding-left: 1rem;">
+        built with minimalism — representing my approach to web & application development.
+      </p>
+    </footer>
+  </div> <!-- end container -->
+
+  <!-- subtle smooth scroll behavior (simple, no extra library) -->
+  <script>
+    (function() {
+      // just for smooth anchor scrolling and a little interactive hover detail
+      document.querySelectorAll('.nav-links a, .btn').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+  </html>
